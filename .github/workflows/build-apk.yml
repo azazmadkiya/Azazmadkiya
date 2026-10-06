@@ -25,37 +25,22 @@ jobs:
       - name: Grant Execute Permission to Gradlew
         run: chmod +x gradlew
 
-      - name: Build Release APK & AAB (Unsigned)
+      - name: Build and Sign Release APK & AAB
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease bundleRelease --no-daemon
-
-      - name: Sign APK
-        uses: r0adkll/sign-android-release@v1
-        id: sign_apk
-        with:
-          releaseDirectory: app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
-          alias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Sign AAB
-        uses: r0adkll/sign-android-release@v1
-        id: sign_aab
-        with:
-          releaseDirectory: app/build/outputs/bundle/release
-          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
-          alias: ${{ secrets.KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
           name: release-signed-apk
-          path: ${{ steps.sign_apk.outputs.signedFiles }}
+          path: app/build/outputs/apk/release/app-release.apk
 
       - name: Upload Signed AAB
         uses: actions/upload-artifact@v4
         with:
           name: release-signed-aab
-          path: ${{ steps.sign_aab.outputs.signedFiles }}
+          path: app/build/outputs/bundle/release/app-release.aab

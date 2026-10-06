@@ -1,4 +1,6 @@
 import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+import java.util.Base64
+import java.io.File
 
 plugins {
   alias(libs.plugins.android.application)
@@ -24,14 +26,26 @@ android {
 
   signingConfigs {
     create("release") {
-      val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
-      val kFile = file(keystorePath)
-      if (kFile.exists()) {
-        storeFile = kFile
-        storePassword = System.getenv("STORE_PASSWORD")
-        keyAlias = System.getenv("KEY_ALIAS") ?: "upload"
-        keyPassword = System.getenv("KEY_PASSWORD")
+      val base64Key = System.getenv("KEYSTORE_BASE64")
+      if (!base64Key.isNullOrEmpty()) {
+        try {
+          val keystoreBytes = Base64.getDecoder().decode(base64Key.trim())
+          val tempKeystore = File(rootDir, "ci-release-key.jks")
+          tempKeystore.writeBytes(keystoreBytes)
+          storeFile = tempKeystore
+        } catch (e: Exception) {
+          println("Warning: Failed to decode KEYSTORE_BASE64: ${e.message}")
+        }
+      } else {
+        val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
+        val kFile = file(keystorePath)
+        if (kFile.exists()) {
+          storeFile = kFile
+        }
       }
+      storePassword = System.getenv("KEYSTORE_PASSWORD") ?: System.getenv("STORE_PASSWORD")
+      keyAlias = System.getenv("KEY_ALIAS") ?: "upload"
+      keyPassword = System.getenv("KEY_PASSWORD") ?: System.getenv("KEYSTORE_PASSWORD")
     }
     create("debugConfig") {
       storeFile = file("${rootDir}/debug.keystore")
@@ -46,10 +60,7 @@ android {
       isCrunchPngs = false
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      val kFile = file(System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks")
-      if (kFile.exists()) {
-        signingConfig = signingConfigs.getByName("release")
-      }
+      signingConfig = signingConfigs.getByName("release")
     }
     debug { signingConfig = signingConfigs.getByName("debugConfig") }
   }

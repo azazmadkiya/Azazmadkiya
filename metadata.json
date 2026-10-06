@@ -1,0 +1,6 @@
+{
+  "name": "Azazmadkiya",
+  "description": "Azazmadkiya official app with blog articles, social media channels, and privacy policy",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

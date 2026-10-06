@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>No Internet Connection - Azazmadkiya</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 28px;
+            padding: 40px 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: rgba(56, 189, 248, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .icon-wrapper svg {
+            width: 42px;
+            height: 42px;
+            fill: #38BDF8;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #94A3B8;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 24px;
+            background-color: #38BDF8;
+            color: #0F172A;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            background-color: #0ea5e9;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: currentColor;
+        }
+
+        .tips {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            text-align: left;
+        }
+
+        .tips-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #CBD5E1;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tips ul {
+            list-style: none;
+            font-size: 13px;
+            color: #64748B;
+            line-height: 1.6;
+        }
+
+        .tips li {
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .tips li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: #38BDF8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-wrapper">
+            <!-- Offline Cloud / Wifi Disconnected SVG Icon -->
+            <svg viewBox="0 0 24 24">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-1.48 0-2.85.43-4.01 1.17l1.46 1.46C10.21 6.23 11.08 6 12 6c3.04 0 5.5 2.46 5.5 5.5v.5H19c1.66 0 3 1.34 3 3 0 1.13-.64 2.11-1.56 2.62l1.45 1.45C23.16 18.16 24 16.68 24 15c0-2.64-2.05-4.78-4.65-4.96zM3 5.27l2.75 2.74C2.56 8.94 1 11.27 1 14c0 3.31 2.69 6 6 6h11.73l2 2 1.41-1.41L4.41 3.86 3 5.27zM7.73 10l8 8H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h.73z"/>
+            </svg>
+        </div>
+
+        <h1>No Internet Connection</h1>
+        <p>Could not connect to Azazmadkiya blog. Please check your Wi-Fi or cellular network and try again.</p>
+
+        <button class="btn" onclick="retryLoad()">
+            <svg viewBox="0 0 24 24">
+                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+            Try Again
+        </button>
+
+        <div class="tips">
+            <div class="tips-title">Quick Troubleshooting:</div>
+            <ul>
+                <li>Make sure Wi-Fi or Mobile Data is turned on.</li>
+                <li>Toggle Airplane Mode off and on.</li>
+                <li>Check your router or mobile carrier coverage.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function retryLoad() {
+            if (window.AndroidBridge && window.AndroidBridge.retry) {
+                window.AndroidBridge.retry();
+            } else {
+                window.location.href = "https://azazmadkiya.blogspot.com";
+            }
+        }
+    </script>
+</body>
+</html>

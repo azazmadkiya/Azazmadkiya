@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Azazmadkiya</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_social">Social Media</string>
+    <string name="nav_privacy">Privacy Policy</string>
+    <string name="nav_about">About &amp; Contact</string>
+    <string name="connect_with_us">Connect with us</string>
+    <string name="open_link">Open link</string>
+    <string name="drawer_footer_text">All available social handles can be accessed from the app drawer.</string>
+</resources>
